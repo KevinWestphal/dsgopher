@@ -24,7 +24,6 @@ const INITIAL_STATE = {
   city: '',
   country: '',
   authUser: {},
-  requestNo: 10001,
   error: null,
 };
 
@@ -47,20 +46,26 @@ class NewReqBase extends Component {
   }
 
   onSubmit = event => {
-    const { name, address_1, address_2, zip, city, country, authUser, requestNo } = this.state;
+    const { name, address_1, address_2, zip, city, country, authUser } = this.state;
+
+    const pushKey = this.props.firebase.user(this.state.authUser.uid).child('requests').push().key;
 
     this.props.firebase
       .user(this.state.authUser.uid)
       .child("requests")
-      .child(requestNo)
+      .child(pushKey)
       .set({
 		rcpt_name: name,
 		rcpt_address_1: address_1,
 		rcpt_address_2: address_2,
 		rcpt_zip: zip,
 		rcpt_city: city,
-		rcpt_country: country
-	  });
+		rcpt_country: country,
+		timestamp: Date.now()
+	  })
+	  .catch(error => {
+        this.setState({ error });
+      });
 
     event.preventDefault();
   }
