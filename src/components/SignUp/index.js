@@ -5,7 +5,6 @@ import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
 
 import * as ROUTES from '../../constants/routes';
-import * as ROLES from '../../constants/roles';
 
 const SignUpPage = () => (
   <div>
