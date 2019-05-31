@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import { FirebaseContext, withFirebase } from '../Firebase';
-import { withAuthorization } from '../Session';
+import { withFirebase } from '../Firebase';
 
 const INITIAL_STATE = {
   newAddress: '',
@@ -19,7 +18,9 @@ class AddressChangeForm extends Component {
   onSubmit = event => {
     const { newAddress } = this.state;
 
-    this.props.firebase.user(this.state.authUser.uid).update({"address": newAddress});
+    this.props.firebase
+      .user(this.state.authUser.uid)
+      .update({"address": newAddress});
 
     event.preventDefault();
   };

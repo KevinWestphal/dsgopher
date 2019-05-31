@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 
-import { FirebaseContext } from '../Firebase';
 import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
-import { withAuthorization } from '../Session';
-
-import * as ROUTES from '../../constants/routes';
-import * as ROLES from '../../constants/roles';
+import { AuthUserContext, withAuthorization } from '../Session';
 
 const StartRequest = () => (
-  <div>
-    <h1>Start New Request</h1>
-    <NewReqForm />
-  </div>
+  <AuthUserContext.Consumer>
+  	{authUser => (
+	  <div>
+	    <h1>Start New Request</h1>
+	    <NewReqForm />
+	  </div>
+	)}
+  </AuthUserContext.Consumer>
 );
+
+const condition = authUser => !!authUser;
 
 const INITIAL_STATE = {
   name: '',
@@ -46,7 +47,7 @@ class NewReqBase extends Component {
   }
 
   onSubmit = event => {
-    const { name, address_1, address_2, zip, city, country, authUser } = this.state;
+    const { name, address_1, address_2, zip, city, country } = this.state;
 
     const pushKey = this.props.firebase.user(this.state.authUser.uid).child('requests').push().key;
 
@@ -145,10 +146,8 @@ class NewReqBase extends Component {
 }
 
 const NewReqForm = compose(
-  withRouter,
   withFirebase,
+  withAuthorization(condition),
 )(NewReqBase);
 
-export default StartRequest;
-
-export { NewReqForm };
+export default StartRequest;;

@@ -4,7 +4,6 @@ import { PasswordForgetForm } from '../PasswordForget';
 import PasswordChangeForm from '../PasswordChange';
 import AddressChangeForm from '../AddressChange';
 import { AuthUserContext, withAuthorization } from '../Session';
-import { withFirebase } from '../Firebase';
 
 const AccountPage = () => (
 	<AuthUserContext.Consumer>

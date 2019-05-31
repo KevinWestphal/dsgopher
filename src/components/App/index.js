@@ -10,6 +10,7 @@ import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import StartRequestPage from '../StartRequest';
+import HistoryPage from '../History';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -31,6 +32,7 @@ const App = () => (
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
       <Route path={ROUTES.START_REQUEST} component={StartRequestPage} />
+      <Route path={ROUTES.HISTORY} component={HistoryPage} />
     </div>
   </Router>
 );

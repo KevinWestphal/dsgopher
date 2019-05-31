@@ -33,6 +33,9 @@ const NavigationAuth = ({ authUser }) => (
       <Link to={ROUTES.START_REQUEST}>Start New Request</Link>
     </li>
     <li>
+      <Link to={ROUTES.HISTORY}>Request History</Link>
+    </li>
+    <li>
       <Link to={ROUTES.ACCOUNT}>Account</Link>
     </li>
     {!!authUser.roles[ROLES.ADMIN] && (

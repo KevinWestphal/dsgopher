@@ -6,3 +6,4 @@ export const ACCOUNT = '/account';
 export const ADMIN = '/admin';
 export const PASSWORD_FORGET = '/pw-forget';
 export const START_REQUEST = '/start-request';
+export const HISTORY = '/history';
