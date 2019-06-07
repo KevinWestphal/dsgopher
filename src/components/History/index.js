@@ -14,19 +14,23 @@ import { withAuthorization, AuthUserContext } from '../Session';
   </AuthUserContext.Consumer>
 );*/
 
+const INITIAL_STATE = {
+  loading: false,      
+  requests: [],
+  authUser: {},
+};
+
+let noRequests = true;
+
 class History extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      loading: false,      
-      requests: [],
-      authUser: {},
-    };
+    this.state = { ...INITIAL_STATE };
   }
 
   componentDidMount() {
-	this.listener = this.props.firebase.onAuthUserListener(
+	  this.listener = this.props.firebase.onAuthUserListener(
       authUser => {
         this.setState({ authUser });
       },
@@ -42,14 +46,18 @@ class History extends Component {
     	.child('requests')
     	.on('value', snapshot => {
       		const requestsObject = snapshot.val();
+//TODO
+        //  if (requestsObject != null) {
+        		const requestsList = Object.keys(requestsObject).map(key => ({
+          	...requestsObject[key],
+          	id: key,
+            }));
 
-      		const requestsList = Object.keys(requestsObject).map(key => ({
-        	...requestsObject[key],
-        	id: key,
-      	}));
+            this.setState({ requests: requestsList });
+            noRequests = false;
+          //}
 
       this.setState({
-        requests: requestsList,
         loading: false,
       });
     });
@@ -67,14 +75,12 @@ class History extends Component {
 
     return (
       <div>
-        <h1>Admin</h1>
-        <p>
-          The Admin Page is accessible by every signed in admin user.
-        </p>
-
-        {loading && <div>Loading ...</div>}
-
-        <RequestList requests={requests} />
+        {noRequests && !loading &&
+          <p>You have not made any requests, yet.</p>
+        } 
+        {!noRequests &&
+          <RequestList />
+        }    
       </div>
     );
   }
@@ -107,4 +113,4 @@ const RequestList = ({ requests }) => (
 //const condition = authUser => !!authUser;
 
 //withAuthorization(condition)(History);
-export default History;
+export default withFirebase(History);
