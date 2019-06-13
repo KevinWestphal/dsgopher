@@ -6,12 +6,11 @@ import { withAuthentication, withAuthorization } from '../Session';
 
 
 const INITIAL_STATE = {
-  loading: false,      
+  loading: true,      
   requests: [],
-  authUser: JSON.parse(localStorage.getItem('authUser')),
+  noRequests: true,
+  authUser: {},
 };
-
-let noRequests = true;
 
 class History extends Component {
   constructor(props) {
@@ -21,17 +20,27 @@ class History extends Component {
   }
 
   componentDidMount() {
-    this.setState({ loading: true });
+    this.listener = this.props.firebase.onAuthUserListener(
+      authUser => {
+        this.setState({ authUser });
+        this.fetchRequests();
+      },
+      () => {
+        this.setState({ authUser: null });
+      },
+    );
+  }
 
+  fetchRequests() {
     const { authUser } = this.state;
 
     this.props.firebase
     	.user(authUser.uid)
     	.child('requests')
-    	.on('value', snapshot => {
+    	.once('value', snapshot => {
   		  const requestsObject = snapshot.val();
 
-        //if(requestsObject != null) {
+        if(requestsObject != null) {
       		const requestsList = Object.keys(requestsObject).map(key => ({
         	...requestsObject[key],
         	uid: key,
@@ -41,7 +50,7 @@ class History extends Component {
             requests: requestsList, 
             noRequests: false,         
           });
-       // }
+        }
 
         this.setState({
           loading: false,
@@ -49,45 +58,45 @@ class History extends Component {
     });
   }
 
-  componentWillUnmount() {
-    this.props.firebase
-    	.user(this.state.authUser.uid)
-    	.child('requests')
-    	.off();
-  }
-
   render() {
-    const { requests, loading } = this.state;
+    const { requests, loading, noRequests, authUser } = this.state;
+
+    console.log(authUser);
 
     const RequestList = ({ requests }) => (
         <div>
-          {loading == false &&
+          {!loading && !noRequests &&
             <ul>
               {requests.map(request => (
                 <li key={request.id}>
                   <span>
-                    <strong>ID:</strong> {request.id}
+                    <strong>Name:</strong> {request.rcpt_name} 
+                    <br/>
                   </span>
                   <span>
-                    <strong>E-Mail:</strong> {request.rcpt_name}
+                    <strong>Address: </strong> {request.rcpt_address_1}, {request.rcpt_address_2}
+                    <br/>
                   </span>
                   <span>
-                    <strong>Username:</strong> {request.rcpt_name}
+                    <strong>City:</strong> {request.rcpt_city} 
+                    <br/>
                   </span>
                   <span>
-                    <strong>Real Name:</strong> {request.rcpt_name}
+                    <strong>Country:</strong> {request.rcpt_country} 
+                    <br/>
                   </span>
                   <span>
-                    <strong>Address:</strong> {request.rcpt_name}
+                    <strong>Sent:</strong> {request.timestamp} 
                   </span>
                 </li>
               ))}
             </ul>
           }
           {loading &&
-            <div>
-              <h1>Loading...</h1>  
-            </div>
+            <h1>Loading...</h1>  
+          }
+          {!loading && noRequests &&
+            <p>You haven't made any requests, yet.</p>
           }
         </div>
     );
