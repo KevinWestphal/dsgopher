@@ -22,15 +22,12 @@ const App = () => (
   <div>
     <GlobalStyle />
     <Router>
-      <div>
+
         <AuthUserContext.Consumer>
           {authUser => authUser &&
             <Navigation />
           }
         </AuthUserContext.Consumer>
-    
-        <hr />
-
         <Route exact path={ROUTES.LANDING} component={SignInPage} />
         <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
         <Route path={ROUTES.SIGN_IN} component={SignInPage} />
@@ -40,7 +37,7 @@ const App = () => (
         <Route path={ROUTES.ADMIN} component={AdminPage} />
         <Route path={ROUTES.START_REQUEST} component={StartRequestPage} />
         <Route path={ROUTES.HISTORY} component={HistoryPage} />
-      </div>
+
     </Router>
   </div>
 );

@@ -8,17 +8,8 @@ import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
-import { Background } from '../../styles/background';
+import Container from '../../styles/container';
 import GlobalStyle from '../../styles/globalStyle';
-
-const Container = styled.div`
-  width: 70%;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
 
 const SignInContainer = styled.div`
   display: grid;

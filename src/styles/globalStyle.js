@@ -3,11 +3,12 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 	html {
-	  background: url(http://tavannaya.ru/wp-content/uploads/2015/07/zapah_iz_stiralnoy_mashiny_2.jpg) no-repeat center center fixed;
-	  -webkit-background-size: cover;
-	  -moz-background-size: cover;
-	  -o-background-size: cover;
-	  background-size: cover;
+		margin:0;
+	    background: url(http://tavannaya.ru/wp-content/uploads/2015/07/zapah_iz_stiralnoy_mashiny_2.jpg) no-repeat center center fixed;
+	    -webkit-background-size: cover;
+	    -moz-background-size: cover;
+	    -o-background-size: cover;
+	    background-size: cover;
 	}
 
 	body {
@@ -15,6 +16,14 @@ const GlobalStyle = createGlobalStyle`
     	padding: 0;
     	font-size: 1.3rem;
     	font-family: "Courier New", Courier, monospace;
+	}
+
+	a {
+		color: #eeeeee;
+	}
+
+	ul {
+		margin: 0;
 	}
 
 	p {

@@ -1,12 +1,13 @@
 import React from 'react';
 
 import { withAuthorization } from '../Session';
+import Container from '../../styles/container';
 
 const HomePage = () => (
-  <div>
+  <Container>
     <h1>Home</h1>
     <p>The Home Page is accessible to logged-in users.</p>
-  </div>
+  </Container>
 );
 
 const condition = authUser => !!authUser;

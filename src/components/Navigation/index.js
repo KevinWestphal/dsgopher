@@ -1,42 +1,72 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from'styled-components';
 
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext, withAuthorization } from '../Session';
 import * as ROLES from '../../constants/roles';
 
+const Sidebar = styled.div` 
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  position: relative;
+  width: 100%;
+  overflow: auto;
+  justify-content: space-between;
+`;
 
-const Navigation = ({ authUser }) => (
-  <div>
+const NavLink = styled.li`
+  padding: 1rem;
+  text-align: center;
+  float: left;
+`;
+
+const Navigation = () => (
+  <Sidebar>
     <AuthUserContext.Consumer>
-      <ul>
-        <li>
-          <Link to={ROUTES.LANDING}>Landing</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.HOME}>Home</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.START_REQUEST}>Start New Request</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.HISTORY}>Request History</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.ACCOUNT}>Account</Link>
-        </li>
-        {!!authUser.roles[ROLES.ADMIN] && (
-          <li>
-            <Link to={ROUTES.ADMIN}>Admin</Link>
-          </li>
-        )}
-        <li>
-          <SignOutButton />
-        </li>
-      </ul>
+      {authUser =>
+        authUser ? (
+          <NavigationAuth authUser={authUser} />
+        ) : (
+          <NavigationNonAuth />
+        )
+      }
     </AuthUserContext.Consumer>
-  </div>
+  </Sidebar>
 );
 
-export default withAuthorization(Navigation);
+const NavigationAuth = ({ authUser }) => (
+  <ul>
+    <NavLink>
+      <Link to={ROUTES.LANDING}>Landing</Link>
+    </NavLink>
+    <NavLink>
+      <Link to={ROUTES.HOME}>Home</Link>
+    </NavLink>
+    <NavLink>
+      <Link to={ROUTES.START_REQUEST}>Start New Request</Link>
+    </NavLink>
+    <NavLink>
+      <Link to={ROUTES.HISTORY}>Request History</Link>
+    </NavLink>
+    <NavLink>
+      <Link to={ROUTES.ACCOUNT}>Account</Link>
+    </NavLink>
+    {!!authUser.roles[ROLES.ADMIN] && (
+      <NavLink>
+        <Link to={ROUTES.ADMIN}>Admin</Link>
+      </NavLink>
+    )}
+    <li>
+      <SignOutButton />
+    </li>
+  </ul>
+);
+
+const NavigationNonAuth = () => (
+  <div />
+);
+
+export default Navigation;
