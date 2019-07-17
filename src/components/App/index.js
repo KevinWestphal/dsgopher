@@ -13,15 +13,19 @@ import StartRequestPage from '../StartRequest';
 import HistoryPage from '../History';
 
 import * as ROUTES from '../../constants/routes';
-import { withAuthentication } from '../Session';
+import { withAuthentication, AuthUserContext } from '../Session';
 
 
 
 const App = () => (
   <Router>
     <div>
-      <Navigation />
-
+      <AuthUserContext.Consumer>
+        {authUser => authUser &&
+          <Navigation />
+        }
+      </AuthUserContext.Consumer>
+  
       <hr />
 
       <Route exact path={ROUTES.LANDING} component={LandingPage} />

@@ -7,57 +7,34 @@ import { AuthUserContext } from '../Session';
 import * as ROLES from '../../constants/roles';
 
 
-const Navigation = () => (
+const Navigation = ({ authUser }) => (
   <div>
-    <AuthUserContext.Consumer>
-      {authUser =>
-        authUser ? (
-          <NavigationAuth authUser={authUser} />
-        ) : (
-          <NavigationNonAuth />
-        )
-      }
-    </AuthUserContext.Consumer>
-  </div>
-);
-
-const NavigationAuth = ({ authUser }) => (
-  <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.HOME}>Home</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.START_REQUEST}>Start New Request</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.HISTORY}>Request History</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ACCOUNT}>Account</Link>
-    </li>
-    {!!authUser.roles[ROLES.ADMIN] && (
+    <ul>
       <li>
-        <Link to={ROUTES.ADMIN}>Admin</Link>
+        <Link to={ROUTES.LANDING}>Landing</Link>
       </li>
-    )}
-    <li>
-      <SignOutButton />
-    </li>
-  </ul>
-);
-
-const NavigationNonAuth = () => (
-  <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-    </li>
-  </ul>
+      <li>
+        <Link to={ROUTES.HOME}>Home</Link>
+      </li>
+      <li>
+        <Link to={ROUTES.START_REQUEST}>Start New Request</Link>
+      </li>
+      <li>
+        <Link to={ROUTES.HISTORY}>Request History</Link>
+      </li>
+      <li>
+        <Link to={ROUTES.ACCOUNT}>Account</Link>
+      </li>
+      {!!authUser.roles[ROLES.ADMIN] && (
+        <li>
+          <Link to={ROUTES.ADMIN}>Admin</Link>
+        </li>
+      )}
+      <li>
+        <SignOutButton />
+      </li>
+    </ul>
+  </div>
 );
 
 export default Navigation;
