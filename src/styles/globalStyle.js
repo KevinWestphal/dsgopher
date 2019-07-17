@@ -13,25 +13,26 @@ const GlobalStyle = createGlobalStyle`
 	body {
 		margin: 0;
     	padding: 0;
-    	font-size: 20px;
+    	font-size: 1.3rem;
     	font-family: "Courier New", Courier, monospace;
 	}
 
 	p {
-		width: 70%;
-		padding: 10px 33px;
+		margin-bottom: 0.4rem;
+		margin-top: 0.4rem;
+		padding: 1rem 2rem;
 		background: #000000;
 		color: #eeeeee;
 	}
 
 	input {
-		font-size: 20px;
+		font-size: 1.3rem;
 		font-family: "Courier New", Courier, monospace;
 		border: none;
-		padding: 10px 33px;
+		padding: 1rem 2rem;
 		color: #eeeeee;
 		cursor: text;
-		font-size: 20px;
+		font-size: 1.3rem;
 		font-weight: 300;
 		text-align: left;
 		background: #000000;
@@ -40,11 +41,13 @@ const GlobalStyle = createGlobalStyle`
 	}
 
 	button {
-		font-size: 20px;
+		font-size: 1.3rem;
 		font-weight: 500;
+		margin-bottom: 0.4rem;
+		margin-top: 0.4rem;
 		font-family: "Courier New", Courier, monospace;
 		border: none;
-		padding: 10px 33px;
+		padding: 1rem 2rem;
 		color: #2C2C2C;
 		text-align: center;
 		background: #FFD500;

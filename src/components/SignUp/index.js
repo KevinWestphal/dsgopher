@@ -7,6 +7,12 @@ import { compose } from 'recompose';
 
 import * as ROUTES from '../../constants/routes';
 
+const SignUpContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 0.4rem;
+`;
+
 const SignUpPage = () => (
   <div>
     <h1>SignUp</h1>
@@ -134,14 +140,16 @@ class SignUpFormBase extends Component {
 }
 
 const SignUpLink = () => (
-  <p>
-    Are you a new user?  
+  <SignUpContainer>
+    <p>
+      Are you a new user?
+    </p>  
     <Link to={ROUTES.SIGN_UP}>
       <button>
         Sign Up
       </button>
     </Link>
-  </p>
+  </SignUpContainer>
 );
 
 const SignUpForm = compose(
