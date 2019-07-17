@@ -13,7 +13,6 @@ import GlobalStyle from '../../styles/globalStyle';
 
 const SignInPage = () => (  
   <div>
-      <h1>SignIn</h1>
       <p>
         DSGopher allows consumers to easily submit GDPR 
         Data Subject Access Requests to companies and 
@@ -67,28 +66,31 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="EMAIL ADDRESS"
-        />
-        <input
-          name="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="PASSWORD"
-        />
-        <PasswordForgetLink />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
+      <p>
+        Do you already have an account?
+        <form onSubmit={this.onSubmit}>
+          <input
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="EMAIL ADDRESS"
+          />
+          <input
+            name="password"
+            value={password}
+            onChange={this.onChange}
+            type="password"
+            placeholder="PASSWORD"
+          />
+          <PasswordForgetLink />
+          <button disabled={isInvalid} type="submit">
+            Sign In
+          </button>
 
-        {error && <p>{error.message}</p>}
-      </form>
+          {error && <p>{error.message}</p>}
+        </form>
+      </p>
     );
   }
 }

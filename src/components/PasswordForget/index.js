@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
@@ -66,10 +67,22 @@ class PasswordForgetFormBase extends Component {
   }
 }
 
+const Forgot = styled.button`
+  color: #eeeeee;
+  background: #BE213B;
+
+  :hover {
+      background-color: #BB153B;
+      color: #ffffff;
+  }
+`;
+
 const PasswordForgetLink = () => (
-  <p>
-    <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password?</Link>
-  </p>
+    <Link to={ROUTES.PASSWORD_FORGET}>
+      <Forgot>
+        Forgot Password?
+      </Forgot>
+    </Link>
 );
 
 export default PasswordForgetPage;

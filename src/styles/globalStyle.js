@@ -17,11 +17,18 @@ const GlobalStyle = createGlobalStyle`
     	font-family: "Courier New", Courier, monospace;
 	}
 
+	p {
+		width: 70%;
+		padding: 10px 33px;
+		background: #000000;
+		color: #eeeeee;
+	}
+
 	input {
 		font-size: 20px;
 		font-family: "Courier New", Courier, monospace;
 		border: none;
-		padding: 7px 33px;
+		padding: 10px 33px;
 		color: #eeeeee;
 		cursor: text;
 		font-size: 20px;
@@ -37,7 +44,7 @@ const GlobalStyle = createGlobalStyle`
 		font-weight: 500;
 		font-family: "Courier New", Courier, monospace;
 		border: none;
-		padding: 7px 33px;
+		padding: 10px 33px;
 		color: #2C2C2C;
 		text-align: center;
 		background: #FFD500;
