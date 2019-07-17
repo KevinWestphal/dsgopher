@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
@@ -134,7 +135,12 @@ class SignUpFormBase extends Component {
 
 const SignUpLink = () => (
   <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+    Don't have an account? 
+    <Link to={ROUTES.SIGN_UP}>
+      <button>
+        Sign Up
+      </button>
+    </Link>
   </p>
 );
 

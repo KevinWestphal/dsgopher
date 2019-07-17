@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
@@ -7,12 +8,23 @@ import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
-const SignInPage = () => (
+import { Background } from '../../styles/background';
+import GlobalStyle from '../../styles/globalStyle';
+
+const SignInPage = () => (  
   <div>
-    <h1>SignIn</h1>
-    <SignInForm />
-    <PasswordForgetLink />
-    <SignUpLink />
+      <h1>SignIn</h1>
+      <p>
+        DSGopher allows consumers to easily submit GDPR 
+        Data Subject Access Requests to companies and 
+        authorities.
+      </p> 
+      <p>
+        DSGopher does not use any data for advertising 
+        purposes and offers all of its services for free.
+      </p> 
+      <SignInForm />
+      <SignUpLink />
   </div>
 );
 
@@ -61,15 +73,16 @@ class SignInFormBase extends Component {
           value={email}
           onChange={this.onChange}
           type="text"
-          placeholder="Email Address"
+          placeholder="EMAIL ADDRESS"
         />
         <input
           name="password"
           value={password}
           onChange={this.onChange}
           type="password"
-          placeholder="Password"
+          placeholder="PASSWORD"
         />
+        <PasswordForgetLink />
         <button disabled={isInvalid} type="submit">
           Sign In
         </button>
