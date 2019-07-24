@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
-import styled from 'styled-components';
 
 import { withFirebase } from '../Firebase';
 import { withAuthentication, withAuthorization } from '../Session';

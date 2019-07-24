@@ -9,7 +9,7 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
 import Container from '../../styles/container';
-import SpacedP from '../../styles/container';
+import SpacedP from '../../styles/spacedParagraph';
 
 const SignInContainer = styled.div`
   display: grid;
