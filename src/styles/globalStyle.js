@@ -42,6 +42,25 @@ const GlobalStyle = createGlobalStyle`
 		color: #eeeeee;
 	}
 
+	table {
+		width: 100%;
+		border-spacing: 0rem 0.4rem;
+	}
+
+	th {
+		padding: 1rem;
+		background: #000000;
+		color: #eeeeee;
+		text-align: center;		
+	}
+
+	td {
+		padding: 1rem;
+		background: #000000;
+		color: #eeeeee;
+		text-align: center;
+	}
+
 	input {
 		font-size: 1.3rem;
 		font-family: "Courier New", Courier, monospace;

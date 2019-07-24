@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
+import styled from 'styled-components';
 
 import { withFirebase } from '../Firebase';
 import { withAuthentication, withAuthorization } from '../Session';
@@ -31,6 +32,20 @@ class History extends Component {
       },
     );
   }
+
+  convertTime(timestamp){
+    var a = new Date(timestamp);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+  }
+
 
   fetchRequests() {
     const { authUser } = this.state;
@@ -67,31 +82,24 @@ class History extends Component {
     const RequestList = ({ requests }) => (
         <Container>
           {!loading && !noRequests &&
-            <ul>
+            <table>
+              <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Timestamp</th>
+              </tr>
               {requests.map(request => (
-                <li key={request.id}>
-                  <span>
-                    <strong>Name:</strong> {request.rcpt_name} 
-                    <br/>
-                  </span>
-                  <span>
-                    <strong>Address: </strong> {request.rcpt_address_1}, {request.rcpt_address_2}
-                    <br/>
-                  </span>
-                  <span>
-                    <strong>City:</strong> {request.rcpt_city} 
-                    <br/>
-                  </span>
-                  <span>
-                    <strong>Country:</strong> {request.rcpt_country} 
-                    <br/>
-                  </span>
-                  <span>
-                    <strong>Sent:</strong> {request.timestamp} 
-                  </span>
-                </li>
+                <tr key={request.id}>
+                  <td>{request.rcpt_name}</td>
+                  <td>{request.rcpt_address_1}<br/>{request.rcpt_address_2}</td>
+                  <td>{request.rcpt_city}</td>
+                  <td>{request.rcpt_country}</td>
+                  <td>{this.convertTime(request.timestamp)}</td>
+                </tr>
               ))}
-            </ul>
+            </table>
           }
           {loading &&
             <h1>Loading...</h1>  
