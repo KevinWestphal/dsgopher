@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import styled from 'styled-components';
+
 
 import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
 import { AuthUserContext, withAuthorization } from '../Session';
 
+
 import Container from '../../styles/container';
 import SpacedP from '../../styles/spacedParagraph';
+
 
 const StartRequest = () => (
   <AuthUserContext.Consumer>
@@ -18,6 +23,7 @@ const StartRequest = () => (
         Request.
       </SpacedP>
 	    <NewReqForm />
+      <ToastContainer autoClose={6000}/>
 	  </Container>
 	)}
   </AuthUserContext.Consumer>
@@ -42,6 +48,13 @@ class NewReqBase extends Component {
 
     this.state = { ...INITIAL_STATE };
   }
+
+  requestSent = () => toast(
+    "Your request was successfully submitted!",
+    { 
+      autoClose: 6000
+    }
+  );
 
   componentDidMount() {
     this.listener = this.props.firebase.onAuthUserListener(
@@ -77,6 +90,9 @@ class NewReqBase extends Component {
       });
 
     event.preventDefault();
+
+    this.requestSent();
+    this.setState({ ...INITIAL_STATE });
   }
 
   onChange = event => {
@@ -103,7 +119,7 @@ class NewReqBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-		<input
+		    <input
           name="name"
           value={name}
           onChange={this.onChange}

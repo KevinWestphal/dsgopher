@@ -19,7 +19,6 @@ const Sidebar = styled.div`
 
 const NavLink = styled.li`
   padding: 1rem;
-  text-decoration: none;
   text-align: center;
   float: left;
 `;

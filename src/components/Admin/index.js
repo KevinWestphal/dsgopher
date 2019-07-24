@@ -5,6 +5,9 @@ import { withFirebase } from '../Firebase';
 import { withAuthorization } from '../Session';
 import * as ROLES from '../../constants/roles';
 
+import Container from '../../styles/container';
+import SpacedP from '../../styles/spacedParagraph';
+
 class AdminPage extends Component {
   constructor(props) {
     super(props);
@@ -41,42 +44,39 @@ class AdminPage extends Component {
     const { users, loading } = this.state;
 
     return (
-      <div>
+      <Container>
         <h1>Admin</h1>
-        <p>
+        <SpacedP>
           The Admin Page is accessible by every signed in admin user.
-        </p>
+        </SpacedP>
 
         {loading && <div>Loading ...</div>}
 
         <UserList users={users} />
-      </div>
+      </Container>
     );
   }
 }
 
 const UserList = ({ users }) => (
-  <ul>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>E-Mail</th>
+      <th>Username</th>
+      <th>Real Name</th>
+      <th>Address</th>
+    </tr>
     {users.map(user => (
-      <li key={user.uid}>
-        <span>
-          <strong>ID:</strong> {user.uid}
-        </span>
-        <span>
-          <strong>E-Mail:</strong> {user.email}
-        </span>
-        <span>
-          <strong>Username:</strong> {user.username}
-        </span>
-        <span>
-          <strong>Real Name:</strong> {user.realName}
-        </span>
-        <span>
-          <strong>Address:</strong> {user.address}
-        </span>
-      </li>
+      <tr key={user.uid}>
+        <td>{user.uid.substring(0,3)}[...]{user.uid.substring(25,28)}</td>
+        <td>{user.email}</td>
+        <td>{user.username}</td>
+        <td>{user.realName}</td>
+        <td>{user.address.split(",")[0]}<br/>{user.address.split(",")[1]}</td>
+      </tr>
     ))}
-  </ul>
+  </table>
 );
 
 const condition = authUser =>

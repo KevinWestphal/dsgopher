@@ -61,6 +61,24 @@ const GlobalStyle = createGlobalStyle`
 		text-align: center;
 	}
 
+	div.Toastify__toast {
+		width: 100%;
+	    overflow:hidden;
+	}
+
+	div.Toastify__toast-body {
+		margin-bottom: 0.4rem;
+		margin-top: 0.4rem;
+		padding: 1rem 2rem;
+		background: #000000;
+		color: #eeeeee;
+		float: left;
+	}
+
+	button.Toastify__close-button {
+		height: 3.45rem;
+	}
+
 	input {
 		font-size: 1.3rem;
 		font-family: "Courier New", Courier, monospace;
