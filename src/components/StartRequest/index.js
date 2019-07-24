@@ -4,13 +4,21 @@ import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
 import { AuthUserContext, withAuthorization } from '../Session';
 
+import Container from '../../styles/container';
+import SpacedP from '../../styles/spacedParagraph';
+
 const StartRequest = () => (
   <AuthUserContext.Consumer>
   	{authUser => (
-	  <div>
+	  <Container>
 	    <h1>Start New Request</h1>
+      <SpacedP>
+        Enter address of the company you would 
+        like to present with a Data Subject Access 
+        Request.
+      </SpacedP>
 	    <NewReqForm />
-	  </div>
+	  </Container>
 	)}
   </AuthUserContext.Consumer>
 );

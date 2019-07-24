@@ -4,7 +4,7 @@ import styled from'styled-components';
 
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
-import { AuthUserContext, withAuthorization } from '../Session';
+import { AuthUserContext } from '../Session';
 import * as ROLES from '../../constants/roles';
 
 const Sidebar = styled.div` 
@@ -19,6 +19,7 @@ const Sidebar = styled.div`
 
 const NavLink = styled.li`
   padding: 1rem;
+  text-decoration: none;
   text-align: center;
   float: left;
 `;
@@ -40,13 +41,10 @@ const Navigation = () => (
 const NavigationAuth = ({ authUser }) => (
   <ul>
     <NavLink>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </NavLink>
-    <NavLink>
       <Link to={ROUTES.HOME}>Home</Link>
     </NavLink>
     <NavLink>
-      <Link to={ROUTES.START_REQUEST}>Start New Request</Link>
+      <Link to={ROUTES.START_REQUEST}>New Request</Link>
     </NavLink>
     <NavLink>
       <Link to={ROUTES.HISTORY}>Request History</Link>

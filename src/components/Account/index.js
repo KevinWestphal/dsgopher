@@ -5,15 +5,17 @@ import PasswordChangeForm from '../PasswordChange';
 import AddressChangeForm from '../AddressChange';
 import { AuthUserContext, withAuthorization } from '../Session';
 
+import Container from '../../styles/container';
+
 const AccountPage = () => (
 	<AuthUserContext.Consumer>
     	{authUser => (
-		  <div>
+		  <Container>
 		    <h1>Account: {authUser.email}</h1>
 		    <PasswordForgetForm />
 		    <PasswordChangeForm />
 		    <AddressChangeForm />
-		  </div>
+		  </Container>
 		)}
   	</AuthUserContext.Consumer>
 );

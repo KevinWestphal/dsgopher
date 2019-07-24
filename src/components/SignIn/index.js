@@ -9,7 +9,7 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
 import Container from '../../styles/container';
-import GlobalStyle from '../../styles/globalStyle';
+import SpacedP from '../../styles/container';
 
 const SignInContainer = styled.div`
   display: grid;
@@ -20,13 +20,9 @@ const Item1 = styled.div`
   grid-row: 1;
 `;
 
-const Item2 = styled.div`
+const Item2 = styled.button`
   grid-column: 4;
   grid-row: 1 / span 2;
-`;
-
-const SpacedP = styled.p`
-  margin-bottom: 10rem;
 `;
 
 const SignInPage = () => (  
@@ -105,12 +101,10 @@ class SignInFormBase extends Component {
             type="password"
             placeholder="PASSWORD"
           />
+          <Item2 disabled={isInvalid} type="submit">
+            Sign In
+          </Item2>         
           <PasswordForgetLink />
-          <Item2>
-            <button disabled={isInvalid} type="submit">
-              Sign In
-            </button>
-          </Item2>
 
           {error && <p>{error.message}</p>}
         </form>

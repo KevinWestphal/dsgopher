@@ -4,6 +4,7 @@ import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
 import { withAuthentication, withAuthorization } from '../Session';
 
+import Container from '../../styles/container';
 
 const INITIAL_STATE = {
   loading: true,      
@@ -64,7 +65,7 @@ class History extends Component {
     console.log(authUser);
 
     const RequestList = ({ requests }) => (
-        <div>
+        <Container>
           {!loading && !noRequests &&
             <ul>
               {requests.map(request => (
@@ -98,13 +99,11 @@ class History extends Component {
           {!loading && noRequests &&
             <p>You haven't made any requests, yet.</p>
           }
-        </div>
+        </Container>
     );
 
     return (
-      <div>
-        <RequestList requests={requests}/>   
-      </div>
+      <RequestList requests={requests}/>   
     );
   }
 }

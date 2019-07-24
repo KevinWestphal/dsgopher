@@ -1,4 +1,3 @@
-import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -20,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
 
 	a {
 		color: #eeeeee;
+ 		text-decoration: none;
 	}
 
 	ul {
@@ -27,6 +27,14 @@ const GlobalStyle = createGlobalStyle`
 	}
 
 	p {
+		margin-bottom: 0.4rem;
+		margin-top: 0.4rem;
+		padding: 1rem 2rem;
+		background: #000000;
+		color: #eeeeee;
+	}
+
+	h1 {
 		margin-bottom: 0.4rem;
 		margin-top: 0.4rem;
 		padding: 1rem 2rem;
