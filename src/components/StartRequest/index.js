@@ -82,7 +82,8 @@ class NewReqBase extends Component {
 		rcpt_zip: zip,
 		rcpt_city: city,
 		rcpt_country: country,
-		timestamp: Date.now()
+		timestamp: Date.now(),
+    status: 'open'
 	  })
 	  .catch(error => {
         this.setState({ error });

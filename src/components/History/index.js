@@ -1,10 +1,27 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
+import styled from 'styled-components';
 
 import { withFirebase } from '../Firebase';
 import { withAuthentication, withAuthorization } from '../Session';
 
 import Container from '../../styles/container';
+
+//TODO Fix overlap with Navbar
+
+const Button = styled.button`
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+  padding: 0rem 0rem;
+  background: none;
+  color: ${props => props.labelColor || "#2C2C2C"};
+`;
+
+const Table = styled.td`
+  background: ${props => props.bgColor || "#FFD500" };
+  color: "#eeeeee";
+  padding: 0rem;
+`;
 
 const INITIAL_STATE = {
   loading: true,      
@@ -88,6 +105,7 @@ class History extends Component {
                 <th>City</th>
                 <th>Country</th>
                 <th>Timestamp</th>
+                <th>Status</th>
               </tr>
               {requests.map(request => (
                 <tr key={request.id}>
@@ -96,6 +114,16 @@ class History extends Component {
                   <td>{request.rcpt_city}</td>
                   <td>{request.rcpt_country}</td>
                   <td>{this.convertTime(request.timestamp)}</td>
+                  {(() => {
+                    switch(request.status) {
+                      default:
+                        return <Table><Button>Mark as solved</Button></Table>;
+                      case 'overdue':
+                        return <Table bgColor="#BE213B"><Button labelColor="#eeeeee">Mark as solved</Button></Table>;
+                      case 'solved':
+                        return <Table bgColor="#00A133">Solved</Table>;
+                    }
+                  })()}
                 </tr>
               ))}
             </table>
