@@ -1,3 +1,4 @@
+// BACKEND
 import React from 'react';
 
 import AuthUserContext from './context';
@@ -14,6 +15,7 @@ const withAuthentication = Component => {
     }
 
     componentDidMount() {
+      // BACKEND
       this.listener = this.props.firebase.onAuthUserListener(
         authUser => {
           localStorage.setItem('authUser', JSON.stringify(authUser));
@@ -38,7 +40,7 @@ const withAuthentication = Component => {
       );
     }
   }
-
+// BACKEND
   return withFirebase(WithAuthentication);
 };
 

@@ -1,3 +1,4 @@
+// BACKEND
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
@@ -10,6 +11,7 @@ const withAuthorization = condition => Component => {
   class WithAuthorization extends React.Component {
 	
   	componentDidMount() {
+      // BACKEND
       this.listener = this.props.firebase.onAuthUserListener(
         authUser => {
           if (!condition(authUser)) {
@@ -35,7 +37,7 @@ const withAuthorization = condition => Component => {
       );
     }
   }
-
+// BACKEND
   return compose(
     withRouter,
     withFirebase,

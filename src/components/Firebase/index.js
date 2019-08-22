@@ -1,3 +1,4 @@
+// BACKEND
 import Firebase from './firebase';
 import FirebaseContext, { withFirebase } from './context';
 

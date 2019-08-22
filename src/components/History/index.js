@@ -1,3 +1,4 @@
+// BACKEND
 import React, { Component } from 'react';
 import { compose } from 'recompose';
 import styled from 'styled-components';
@@ -38,6 +39,7 @@ class History extends Component {
   }
 
   componentDidMount() {
+    // BACKEND
     this.listener = this.props.firebase.onAuthUserListener(
       authUser => {
         this.setState({ authUser });
@@ -65,7 +67,7 @@ class History extends Component {
 
   fetchRequests() {
     const { authUser } = this.state;
-
+    // BACKEND
     this.props.firebase
     	.user(authUser.uid)
     	.child('requests')
@@ -144,7 +146,7 @@ class History extends Component {
 }
 
 const condition = authUser => !!authUser;
-
+// BACKEND
 export default compose(
   withAuthorization(condition),
   withAuthentication,

@@ -1,3 +1,4 @@
+/// BACKEND
 import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
@@ -17,7 +18,7 @@ class AddressChangeForm extends Component {
 
   onSubmit = event => {
     const { newAddress } = this.state;
-
+// BACKEND
     this.props.firebase
       .user(this.state.authUser.uid)
       .update({"address": newAddress});
@@ -67,5 +68,5 @@ class AddressChangeForm extends Component {
     );
   }
 }
-
+// BACKEND
 export default withFirebase(AddressChangeForm);

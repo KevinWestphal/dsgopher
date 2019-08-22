@@ -1,3 +1,4 @@
+// BACKEND
 import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
@@ -17,7 +18,7 @@ class PasswordChangeForm extends Component {
 
   onSubmit = event => {
     const { passwordOne } = this.state;
-
+// BACKEND
     this.props.firebase
       .doPasswordUpdate(passwordOne)
       .then(() => {
@@ -65,5 +66,5 @@ class PasswordChangeForm extends Component {
     );
   }
 }
-
+// BACKEND
 export default withFirebase(PasswordChangeForm);

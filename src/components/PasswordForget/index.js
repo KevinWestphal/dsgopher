@@ -1,3 +1,4 @@
+// BACKEND
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -26,7 +27,7 @@ class PasswordForgetFormBase extends Component {
 
   onSubmit = event => {
     const { email } = this.state;
-
+// BACKEND
     this.props.firebase
       .doPasswordReset(email)
       .then(() => {
@@ -86,7 +87,7 @@ const PasswordForgetLink = () => (
 );
 
 export default PasswordForgetPage;
-
+// BACKEND
 const PasswordForgetForm = withFirebase(PasswordForgetFormBase);
 
 export { PasswordForgetForm, PasswordForgetLink };

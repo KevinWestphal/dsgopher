@@ -1,3 +1,4 @@
+// BACKEND
 import React, { Component } from 'react';
 import { compose } from 'recompose';
 
@@ -20,7 +21,7 @@ class AdminPage extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-
+// BACKEND
     this.props.firebase.users().on('value', snapshot => {
       const usersObject = snapshot.val();
 
